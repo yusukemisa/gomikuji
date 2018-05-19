@@ -31,10 +31,10 @@ handlers:
 
 ```
 #ローカルサーバー起動
-goapp serve app.yaml
+$ dev_appserver.py app.yaml
 
 #デプロイ
-gcloud app deploy
+$ gcloud app deploy
 Services to deploy:
 
 descriptor:      [/Users/yusukemisawa/dev/go/src/github.com/yusukemisa/gomikuji/app.yaml]
