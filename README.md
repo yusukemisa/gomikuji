@@ -11,3 +11,7 @@
 ```
 $ go get github.com/yusukemisa/gomikuji
 ```
+
+## call by Slack
+![Call by Slack](https://raw.githubusercontent.com/yusukemisa/gomikuji/master/callBySlack.gif)
+
