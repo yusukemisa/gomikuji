@@ -12,13 +12,26 @@ import (
 	"google.golang.org/appengine"
 )
 
+// const (
+// 	daikichi
+// )
+
 type gomikuji struct {
 	t time.Time
 }
 
 type omikujiResult struct {
-	Fortune  string `json:"fortune"`
-	ImageURL string `json:"imageURL"`
+	Text string      `json:"text"`
+	Img  attachments `json:"attachments"`
+	//ImageURL string `json:"imageURL"`
+}
+
+type attachments []attachment
+
+type attachment struct {
+	Title    string `json:"title"`
+	Color    string `json:"color"`
+	ImageURL string `json:"image_url"`
 }
 
 func main() {
@@ -53,26 +66,32 @@ func result2JsonString(o *omikujiResult) (string, error) {
 //おみくじロジック
 func (g *gomikuji) omikuji() *omikujiResult {
 	castNum := g.cast()
-	var result, imgURL string
+	var result, image string
 	switch castNum {
 	case 1:
 		result = "凶"
-		imgURL = ""
+		image = "omikuji_kyou.png"
 	case 2, 3:
 		result = "吉"
-		imgURL = ""
+		image = "omikuji_kichi.png"
 	case 4, 5:
 		result = "中吉"
-		imgURL = ""
+		image = "omikuji_chuukichi.png"
 	case 6:
 		result = "大吉"
-		imgURL = ""
+		image = "omikuji_daikichi.png"
+	}
+	a := attachments{
+		{
+			ImageURL: "https://raw.githubusercontent.com/yusukemisa/gomikuji/master/" + image,
+			Title:    "あなたの運勢",
+			Color:    "#bce2e8",
+		},
 	}
 	return &omikujiResult{
-		Fortune:  result,
-		ImageURL: imgURL,
+		Text: result,
+		Img:  a,
 	}
-
 }
 
 func (g *gomikuji) cast() int {
@@ -81,3 +100,12 @@ func (g *gomikuji) cast() int {
 	//if m == time.January &&
 	return rand.Intn(6) + 1
 }
+
+/*
+{
+  "text": "I found a MONSTER! ",
+  "channel": "#incoming-test",
+"color": "#2eb886",
+  "icon_emoji": ":baymax:"
+}
+*/
