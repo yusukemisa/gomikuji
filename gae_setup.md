@@ -35,14 +35,5 @@ $ dev_appserver.py app.yaml
 
 #デプロイ
 $ gcloud app deploy
-Services to deploy:
 
-descriptor:      [/Users/yusukemisawa/dev/go/src/github.com/yusukemisa/gomikuji/app.yaml]
-source:          [/Users/yusukemisawa/dev/go/src/github.com/yusukemisa/gomikuji]
-target project:  [gomikuji-204605]
-target service:  [default]
-target version:  [20180519t162803]
-target url:      [https://gomikuji-204605.appspot.com]
-
-Do you want to continue (Y/n)?  
 ```
